@@ -9,32 +9,43 @@ String, Boolean, Int, Float, ID
 // Type definitions (schema)
 const typeDefs = `
 	type Query {
+		me: User!
+		post: Post!
+	}
+
+	type User {
 		id: ID!
 		name: String!
-		age: Int!
-		employed: Boolean!
-		gpa: Float
+		email: String!
+		age: Int
+	}
+
+	type Post {
+		id: ID!
+		title: String!
+		body: String!
+		published: Boolean!
 	}
 `;
 
 // Resolvers
 const resolvers = {
 	Query: {
-		id() {
-			return "abc123";
+		me() {
+			return ({
+				id: "1234AF",
+				name: "Mike",
+				email: "mike@example.com",
+			})
 		},
-		name() {
-			return "This is the name";
-		},
-		age() {
-			return 27;
-		},
-		employed() {
-			return true;
-		},
-		gpa() {
-			return null;
-		},
+		post() {
+			return ({
+				id: "123",
+				title: "This is a post",
+				body: "This is a body",
+				published: true
+			})
+		}
 	}
 }
 
