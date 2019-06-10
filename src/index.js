@@ -1,16 +1,48 @@
-import theCity, {
-	message,
-	name,
-	getGreeting
-} from './myModule';
-import sumFunc, {
-	subtract
-} from './math.js'
+import {
+	GraphQLServer
+} from 'graphql-yoga';
 
-console.log(message);
-console.log(name);
-console.log(theCity);
-console.log(getGreeting("Richard"));
+/* Scalers include:
+String, Boolean, Int, Float, ID
+*/
 
-console.log(`Adding 1 + 2 = ${sumFunc(1, 2)}`);
-console.log(`Subtracting 1 from 2 is ${subtract(2, 1)}`);
+// Type definitions (schema)
+const typeDefs = `
+	type Query {
+		id: ID!
+		name: String!
+		age: Int!
+		employed: Boolean!
+		gpa: Float
+	}
+`;
+
+// Resolvers
+const resolvers = {
+	Query: {
+		id() {
+			return "abc123";
+		},
+		name() {
+			return "This is the name";
+		},
+		age() {
+			return 27;
+		},
+		employed() {
+			return true;
+		},
+		gpa() {
+			return null;
+		},
+	}
+}
+
+const server = new GraphQLServer({
+	typeDefs: typeDefs,
+	resolvers: resolvers
+});
+
+server.start(() => {
+	console.log("The server is running");
+})
