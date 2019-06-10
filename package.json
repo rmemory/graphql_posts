@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/index.js --presets @babel/preset-env",
+    "dev": "babel-node src/index.js --presets @babel/preset-env",
+    "start": "nodemon src/index.js --exec babel-node --presets @babel/preset-env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,7 +15,8 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
-    "@babel/preset-env": "^7.4.5"
+    "@babel/preset-env": "^7.4.5",
+    "nodemon": "^1.19.1"
   },
   "dependencies": {
     "graphql-yoga": "^1.17.4"
